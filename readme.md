@@ -1,5 +1,5 @@
 
-#Test task in SkolTech
+# Test task in SkolTech
 
 Задание:
 /files/Java Developer_v3__13_01_2020.docx (Лежит в корне репозитория)
@@ -155,7 +155,7 @@ GET
 #### 5) allMeasures
 
 http://localhost:8080/api/
-POST
+GET
 
 
 
