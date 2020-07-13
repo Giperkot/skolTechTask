@@ -15,18 +15,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import java.io.*;
-import java.sql.Timestamp;
-import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 @Service
 public class DBCreaterService {
@@ -74,9 +68,15 @@ public class DBCreaterService {
             throw new UserException("pathToJsonData is empty");
         }
 
+        File dataJsonFile = new File (pathToJsonDataVal);
+
+        if (!dataJsonFile.exists()) {
+            throw new UserException("Не указан путь к data.json");
+        }
+
         clearDatabase();
 
-        try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream(pathToJsonDataVal)));) {
+        try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream(dataJsonFile)));) {
             String line;
 
             while ((line = bufferedReader.readLine()) != null) {

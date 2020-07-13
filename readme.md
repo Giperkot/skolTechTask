@@ -1,5 +1,5 @@
 
-# Test task in SkolTech
+# ApiTest task in SkolTech
 
 Задание:
 /files/Java Developer_v3__13_01_2020.docx (Лежит в корне репозитория)
@@ -9,9 +9,8 @@
 
 ## Вам потребуется:
 
-1) Apache Tomcat 9.0.7 or later
-2) Maven 3.3.9 or later. Или встроенный в Intellij Idea.
-3) БД PostgreSQL (Версия 9 и выше.)
+1) Maven 3.3.9 or later. Или встроенный в Intellij Idea.
+2) БД PostgreSQL (Версия 9 и выше.)
 
 ## БД:
 
@@ -29,21 +28,19 @@
 
 2) Указать полный путь до файла **data.json** в файле application.properties
 
-    path.to.json.data=**fullPathTo_data.json**
+    **path.to.json.data**=**fullPathTo_data.json**
 
 
 ## Java
 
-1) Распаковать Tomcat
-2) Произвести сборку проекта **mvn clean install**
-3) Рекомендуется поставить Application context=/ и поставить порт 8080
-4) Добавить артефакт для сборки.
-5) Добавить параметры 
+1) Произвести сборку проекта **mvn clean install**
+2) Рекомендуется поставить Application context=/ и поставить порт 8080
+3) Добавить артефакт для сборки.
+4) Добавить параметры 
     -DCreateDB=true (Заполнение БД из файла data.json)
     -DFile.encoding=UTF8
 
 ![alt tag](files/2020-07-12_222943.png "Описание будет тут")​
-![alt tag](files/2020-07-12_222906.png "Описание будет тут")​
 
 # Доступное api
 
@@ -82,7 +79,7 @@ POST
 
 #### 2) /api/history
 
-http://localhost:8080/api/history
+http://localhost:8080/api/history?id=0
 from, to - необязательные параметры
 GET
 
@@ -154,7 +151,7 @@ GET
 
 #### 5) allMeasures
 
-http://localhost:8080/api/
+http://localhost:8080/api/allMeasures
 GET
 
 

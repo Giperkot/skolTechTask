@@ -3,10 +3,12 @@ package application.dto;
 import application.entity.AvgResultEntity;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 
 @Entity
 public class AvgResultDto {
 
+    @Id
     private Long id;
 
     private Double value;
