@@ -102,14 +102,21 @@
     </dependencies>
 
     <build>
-        <finalName>Physics App</finalName>
+        <finalName>skoltechTaskSensors</finalName>
         <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.0</version>
                 <configuration>
-                    <source>12</source>
-                    <target>12</target>
+                    <compilerArgument>-parameters</compilerArgument>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                    <source>1.8</source>
+                    <target>1.8</target>
                 </configuration>
             </plugin>
 

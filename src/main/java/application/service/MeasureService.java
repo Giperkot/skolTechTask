@@ -48,14 +48,10 @@ public class MeasureService {
 
         if (from == null) {
             from = 0L;
-        } else {
-            from = from * 1000;
         }
 
         if (to == null) {
             to = Long.MAX_VALUE / 1000_000;
-        } else {
-            to = to * 1000;
         }
 
         List<MeasureResultDto> result = new ArrayList<>();

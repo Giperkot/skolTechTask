@@ -48,6 +48,10 @@
 http://localhost:8080/api/save
 
 POST
+
+Headers:
+Content-Type: application/json
+
 Тело запроса: 
 [
 	{

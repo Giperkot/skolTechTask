@@ -1,21 +1,17 @@
 package application.repository;
 
-import application.dto.MeasureResultDto;
 import application.entity.AvgResultEntity;
 import application.entity.MeasureResultEntity;
-//import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.math.BigInteger;
 import java.util.List;
+
+//import org.hibernate.Query;
 
 @Repository
 public class MeasureResultDao {
@@ -91,8 +87,19 @@ public class MeasureResultDao {
     }
 
     public List<AvgResultEntity> getAvgGroupByObject() {
-        String sql = "select mr.object_id as id, avg(mr.value) as avg from sensor.measure_result mr\n" +
-                "    group by mr.object_id";
+        String sql = "select t2.object_id as id, avg(t2.value) as avg from ( " +
+                "     select t1.object_id, t1.sensor_id, t1.measure_time, t1.value " +
+                "     from (\n" +
+                "              select row_number() over (partition by mr.sensor_id, mr.object_id " +
+                "                  order by measure_time desc) as row_number, " +
+                "                     object_id, " +
+                "                     sensor_id, " +
+                "                     measure_time, " +
+                "                     value\n" +
+                "              from sensor.measure_result mr) t1 " +
+                "     where t1.row_number = 1 " +
+                " ) t2 group by object_id";
+
 
         Query query = em.createNativeQuery(sql, AvgResultEntity.class);
 
